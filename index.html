@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- Belgenin HTML5 olduğunu belirtir -->
+<html lang="tr">
+  <!-- Sayfanın dilini Türkçe olarak ayarlar -->
+
+  <head>
+    <!-- Sayfanın karakter kodlamasını UTF-8 olarak belirler (Türkçe karakterler için önemlidir) -->
+    <meta charset="UTF-8" />
+
+    <!-- Sayfanın mobil uyumlu olmasını sağlar (responsive tasarım) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tarayıcı sekmesinde görünen başlığı belirler -->
+    <title>To-Do List</title>
+
+    <!-- Sayfanın açıklamasını belirler (SEO için önemlidir) -->
+    <meta
+      name="description"
+      content="Basit ve etkili bir To-Do List uygulaması ile görevlerinizi yönetin."
+    />
+    <meta name="author" content="Msc Computer Engineer Hamit Mızrak" />
+
+    <!-- Internet Explorer için en iyi uyumluluk modunu belirler -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Tarayıcı sekmesindeki küçük ikon (favicon) dosyasını belirtir -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <!-- Google Fonts üzerinden Roboto yazı tipini yükler -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome ikon kütüphanesini dahil eder -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!-- Harici(External) CSS dosyasını bağlayarak sayfanın stilini uygular -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">Logo</a>
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="#" aria-current="page"
+                  >Home <span class="visually-hidden">(current)</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >Dropdown</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                  <a class="dropdown-item" href="#">Action 1</a>
+                  <a class="dropdown-item" href="#">Action 2</a>
+                </div>
+              </li>
+            </ul>
+            <form class="d-flex my-2 my-lg-0">
+              <input
+                class="form-control me-sm-2"
+                type="text"
+                placeholder="Search"
+              />
+              <button
+                class="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <!-- TODO -->
+      <section>
+        <!-- Sayfa içeriği burada başlıyor -->
+        <!-- Tüm To-Do List bileşenlerini kapsayan ana kutu -->
+        <div class="todo-container">
+          <!-- Sayfanın ana başlığı -->
+          <h1 class="title">TODOLIST</h1>
+
+          <form action="#" method="get">
+            <div class="todo-input">
+              <!-- Kullanıcının yeni görev ekleyebileceği giriş alanları -->
+              <input
+                type="text"
+                id="todo-text"
+                placeholder="Bir görev girin..."
+              />
+              <!-- Kullanıcının yeni bir görev girebileceği metin kutusu -->
+              <select id="priority-select">
+                <!-- Görevin öncelik seviyesini belirlemek için açılır menü -->
+                <option value="Low">Düşük</option>
+                <option value="Medium">Orta</option>
+                <option value="High">Yüksek</option>
+              </select>
+
+              <!-- Kullanıcının görev için son tarih seçmesini sağlayan giriş alanı -->
+              <input type="date" id="due-date" />
+
+              <!-- Görevin kategorisini belirlemek için açılır menü -->
+              <select id="category-select">
+                <option value="Work">İş</option>
+                <option value="Personal">Kişisel</option>
+                <option value="Shopping">Alışveriş</option>
+              </select>
+
+              <!-- Yeni bir görev eklemek için buton -->
+              <button
+                style="background-color: black"
+                class="btn btn-primary"
+                id="add-btn"
+                aria-label="Görev Ekle"
+              >
+                +
+              </button>
+            </div>
+          </form>
+
+          <!-- Görevleri kategoriye göre filtrelemek için alan -->
+          <div class="filter-section">
+            <label for="filter-select">Filtrele:</label>
+            <select id="filter-select">
+              <option value="all">Tümü</option>
+              <option value="Work">İş</option>
+              <option value="Personal">Kişisel</option>
+              <option value="Shopping">Alışveriş</option>
+            </select>
+          </div>
+
+          <!-- Görevlerin listelendiği alan (JS tarafından dinamik olarak doldurulacak) -->
+          <ul id="todo-list"></ul>
+
+          <div class="todo-footer">
+            <!-- Görevlerin durumunu ve tamamlananları silme butonunu içeren alt bölüm -->
+            <span id="task-status"
+              ><span class="highlight">0</span> tamamlandı</span
+            >
+            <!-- Tamamlanan görevlerin sayısını gösteren alan -->
+            <button id="remove-checked" aria-label="Tamamlananları Sil">
+              Tamamlananları Sil ✖
+            </button>
+            <!-- Tamamlanan görevleri silen buton -->
+          </div>
+        </div>
+      </section>
+
+      <section id="parag_id">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque aliquam beatae eos repellendus. Cumque commodi, iure, quod reprehenderit nam iusto quos assumenda non deserunt dolore corrupti eius voluptatem id inventore.
+      Nam doloremque odio et cumque adipisci alias neque asperiores sit. Rerum veritatis ipsam, quam nobis, dignissimos a quos, esse odit accusamus qui earum repellat nemo ad quidem recusandae! Exercitationem, veniam.
+      Necessitatibus earum quia quod, dicta laborum recusandae? Maiores ratione necessitatibus architecto! Beatae odit doloremque ad, eius voluptatibus tempora architecto nulla optio corrupti exercitationem sint autem! Ad commodi voluptatibus animi ipsum.
+      Ut minima accusamuslo recusandae fugiat facilis magni exercitationem ut qui quibusdam sed cum tenetur architecto quo voluptatem odit sapiente iste molestias accusantium, eveniet unde laborum quae id dignissimos. Officia!
+      tetur reprehenderit eius nobis dolorum autem molestias sequi, voluptatem ut fugiat vel rem quam eum dolore deleniti eveniet tempora reiciendis, odit cum! Illum optio quas ad similique.</section>
+    </main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- JavaScript dosyasını defer ile yükleme -->
+    <!-- 
+    defer özelliği aşağıdaki avantajları sağlar:
+
+    HTML Tamamen Yüklendikten Sonra Çalıştırır:
+
+    Tarayıcı, HTML sayfasını tamamen yükledikten sonra JavaScript dosyanızı çalıştırır.
+    Eğer JavaScript'in HTML öğeleriyle etkileşim kurması gerekiyorsa, defer kullanarak DOMContentLoaded olayından sonra çalışmasını sağlayabilirsiniz.
+    Paralel Yükleme:
+
+    JavaScript dosyası arka planda HTML yüklenirken indirilir.
+    Böylece tarayıcının HTML’yi okuması ve JavaScript dosyasını yüklemesi aynı anda gerçekleşir, sayfa daha hızlı açılır.
+    Kodun Doğru Sırada Yürütülmesini Sağlar:
+
+    Eğer birden fazla script etiketi varsa, defer ile işaretlenen tüm script'ler HTML’de göründükleri sırayla çalıştırılır.
+    🔥 Sonuç: defer Kullanmalı mıyım?
+    Evet! Özellikle document.getElementById() veya querySelector() gibi yöntemlerle HTML öğelerine erişiyorsanız, kesinlikle defer kullanmalısınız. Böylece:
+
+    Daha hızlı yükleme sağlarsınız.
+    JavaScript’in HTML tamamen yüklendikten sonra çalışmasını garantilersiniz.
+    Sayfa hızı ve performansı artar.
+    -->
+    <!-- External JS -->
+    <script src="./dist/src/index.js" defer></script>
+  </body>
+</html>
